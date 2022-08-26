@@ -9,48 +9,36 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-toolbar style="margin-top: 10px;">
-  <ion-searchbar animated placeholder="Buscar"></ion-searchbar>
-</ion-toolbar>
 
+<ion-content>
 
-<h2 style="margin-left: 5%;">Categorias</h2>
+  <ion-content>
+    <ion-card style="padding: 1.5%;">
+      <ion-card-title style="color: black; margin-left: 4%;">Porque ter um pet?</ion-card-title>
+      <ion-card-content>
+      <p style="color: black">Vários estudos já mostraram o bem que um pet faz à saúde das pessoas. <br>Além disso, ter um animalzinho em casa resulta em passeios que estimulam os exercícios, melhoram a pressão sanguínea e evita que o dono apresente indícios de depressão, ansiedade ou estresse.</p>
+      </ion-card-content>
+    </ion-card>
 
-<ion-slides [options]="slideOpts" style="margin-top: 5%;">
-  <ion-slide style="display: flex; flex-direction: column; margin: 0%;">
-    <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn-icons-png.flaticon.com/512/98/98110.png?w=360" style="padding: 10%;"></ion-img></ion-button>
-    <span style="font-family: Arial, Helvetica, sans-serif;">Cachorro</span>
-  </ion-slide>
-  <ion-slide style="display: flex; flex-direction: column; margin: 0%;">
-    <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn-icons-png.flaticon.com/512/98/98110.png?w=360" style="padding: 10%;"></ion-img></ion-button>
-    <span style="font-family: Arial, Helvetica, sans-serif;">Gato</span>
-  </ion-slide>
-  <ion-slide style="display: flex; flex-direction: column; margin: 0%;">
-    <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn-icons-png.flaticon.com/512/98/98110.png?w=360" style="padding: 10%;"></ion-img></ion-button>
-    <span style="font-family: Arial, Helvetica, sans-serif;">Passarinho</span>
-  </ion-slide>
-  <ion-slide style="display: flex; flex-direction: column; margin: 0%;">
-    <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn-icons-png.flaticon.com/512/98/98110.png?w=360" style="padding: 10%;"></ion-img></ion-button>
-    <span style="font-family: Arial, Helvetica, sans-serif;">Passarinho</span>
-  </ion-slide>
-</ion-slides>
-
-<ion-list style="margin-top: 10%;">
-  <ion-card style="margin: 3%; display: flex;" [routerLink]="['/pet-info']" *ngFor="let a of animals; let i = index;" (click)="showPetInfo(i)">
-    <ion-grid style="width: 100%;">
-      <ion-row>
-        <ion-col size="6">
-          <ion-img style="height: 100%;" [src]="a.imagem"></ion-img>
-        </ion-col>
-        <ion-col>
-          <div style="display: flex; flex-direction: row;">
-            <h3 style="color: black; margin-bottom: 0%; margin-top: 1%;">{{ a.nome }}</h3>
-            <ion-button fill="outline" slot="end" style="margin-top: 2%; margin-left: 30%; height: 30%; width: 35%;"><ion-icon name="female"></ion-icon></ion-button>
-          </div>
-          <span>{{ a.descricao }}</span>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
+    <ion-card>
+    <h2 style="margin-left: 4%; margin-bottom: 0%; color: black;">Vantagens de adotar um pet:</h2>
+    <ion-list>
+      <ion-card color="secondary" style="text-align: center; padding: 1.5%;">
+        <ion-label>Você estará resgatando uma vida</ion-label>
+      </ion-card>
+      <ion-card color="secondary" style="text-align: center; padding: 1.5%;">
+        <ion-label>Ter um pet em casa = felicidade para o lar</ion-label>
+      </ion-card>
+    </ion-list>
   </ion-card>
-</ion-list>
+
+
+  <ion-card style="text-align: center; margin-top: 0%;">
+    <ion-card-title><h3>Tenha consciência:</h3></ion-card-title>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/609WM30kODM" title="Vídeo de conscientização" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <ion-card-subtitle>
+      <h6>OBS: Esse vídeo possui o propósito de conscientização</h6>
+    </ion-card-subtitle>
+  </ion-card>
+</ion-content>
+</ion-content>
