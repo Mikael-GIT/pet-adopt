@@ -23,7 +23,7 @@ const routes: Routes = [
     loadChildren: () => import('./pet-info/pet-info.module').then( m => m.PetInfoPageModule)
   },
   {
-    path: 'donation',
+    path: 'donation/:id',
     loadChildren: () => import('./donation/donation.module').then( m => m.DonationPageModule)
   },
   {

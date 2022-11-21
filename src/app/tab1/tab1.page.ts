@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../services/local-storage.service';
 import { NavController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/quotes */
@@ -48,7 +49,8 @@ export class Tab1Page {
     private router: Router,
     private homeService: HomeService,
     private activatedRoute: ActivatedRoute,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit() {
@@ -63,6 +65,7 @@ export class Tab1Page {
 
 
   showAdoption(adocao){
+    this.localStorageService.set('adoption', adocao);
     this.navCtrl.navigateRoot(`/donation/${adocao.id}`, { animationDirection: 'forward' });
   }
 

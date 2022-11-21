@@ -1,70 +1,369 @@
-<!-- eslint-disable @angular-eslint/template/eqeqeq -->
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button color="primary" class="backbtn" routerLink="/tabs/tab2" routerDirection="back">
+      <ion-buttons class="backbtn" routerLink="/my-cart" routerDirection="back">
         <img src="../../assets/back-dark.svg" />
-      </ion-button>
-    </ion-buttons>
-
-    <ion-buttons slot="end">
-      <ion-button class="notification">
-        <ion-icon name="notifications-outline" color="dark"></ion-icon>
-        <span>&nbsp;</span>
-      </ion-button>
+      </ion-buttons>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-content class="ion-padding" fullscreen="true">
-    <img [src]=""/>
-    <h1 class="title">Pedido de adoção</h1>
-    <div class="form-container">
-      <form>
+<ion-content class="ion-padding" fullscreen="true">
+  <h1 class="title">Dados do pedido de adoção</h1>
+  <div class="form-container">
+    <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+      <ion-list>
+        <h3>Dados Pessoais</h3>
+        <ion-item>
+          <ion-label position="floating">Idade</ion-label>
+          <ion-input
+            [value]="adocao.usuario.idade"
+            autocapitalize
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.idade">
+          <ng-container
+            *ngIf="idade.hasError(error.type) && (idade.dirty || idade.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">CPF</ion-label>
+          <ion-input
+          [value]="adocao.usuario.cpf"
+            autocapitalize
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.cpf">
+          <ng-container
+            *ngIf="cpf.hasError(error.type) && (cpf.dirty || cpf.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Profissão</ion-label>
+          <ion-input
+            [value]="adocao.usuario.profissao"
+            autocapitalize
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.profissao">
+          <ng-container
+            *ngIf="profissao.hasError(error.type) && (profissao.dirty || profissao.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h3>Redes Sociais</h3>
+
+        <ion-item>
+          <ion-label position="floating">Link do Facebook do adotante</ion-label>
+          <ion-input
+            [value]="adocao.usuario.linkFacebook"
+            autocapitalize
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.linkFacebook">
+          <ng-container
+            *ngIf="linkFacebook.hasError(error.type) && (linkFacebook.dirty || linkFacebook.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Link do Instagram do adotante</ion-label>
+          <ion-input
+            [value]="adocao.usuario.linkInstagram"
+            autocapitalize
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.linkInstagram">
+          <ng-container
+            *ngIf="linkInstagram.hasError(error.type) && (linkInstagram.dirty || linkInstagram.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+          <h6 position="floating">
+            Adotante já possui ou possuiu animais de estimação</h6
+          >
+        <ion-segment formControlName="possuiOuPossuiuPets">
+          <ion-segment-button value="true">
+            <ion-label>Sim</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="false">
+            <ion-label>Não</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <div *ngFor="let error of errorMessages.possuiOuPossuiuPets">
+          <ng-container
+            *ngIf="possuiOuPossuiuPets.hasError(error.type) && (possuiOuPossuiuPets.dirty || possuiOuPossuiuPets.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h3>Casa e Família</h3>
+
+        <h6 position="floating">
+          Motivo da adoção?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.motivoAdocao"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.motivoAdocao">
+          <ng-container
+            *ngIf="motivoAdocao.hasError(error.type) && (motivoAdocao.dirty || motivoAdocao.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h6 position="floating">
+          Adotante, mora com quantos adultos e quantas crianças?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.numResidentesDomicilio"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.numResidentesDomicilio">
+          <ng-container
+            *ngIf="numResidentesDomicilio.hasError(error.type) && (numResidentesDomicilio.dirty || numResidentesDomicilio.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h6 position="floating">
+          Todos os moradores da residência concordam com a
+            adoção?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.residentesConcordamAdocao"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.residentesConcordamAdocao">
+          <ng-container
+            *ngIf="residentesConcordamAdocao.hasError(error.type) && (residentesConcordamAdocao.dirty || residentesConcordamAdocao.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h6 position="floating">
+          O bichinho terá livre acesso a toda a casa ou terá um local
+            separado pra ele?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.teraLivreAcessoAosComodos"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.teraLivreAcessoAosComodos">
+          <ng-container
+            *ngIf="teraLivreAcessoAosComodos.hasError(error.type) && (teraLivreAcessoAosComodos.dirty || teraLivreAcessoAosComodos.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h6 position="floating">
+         Está ou alguém da família está esperando um bebê ou pretendem
+            ter?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.possuiBebeOuPretende"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.possuiBebeOuPretende">
+          <ng-container
+            *ngIf="possuiBebeOuPretende.hasError(error.type) && (possuiBebeOuPretende.dirty || possuiBebeOuPretende.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h6 position="floating">
+          Possui alguém em casa que é ou pode ser alérgico a animais?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.residentesPossuiAlergia"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.residentesPossuiAlergia">
+          <ng-container
+            *ngIf="residentesPossuiAlergia.hasError(error.type) && (residentesPossuiAlergia.dirty || residentesPossuiAlergia.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h6 position="floating">
+          Adotante concorda em nos manter informados sobre o animal que adotou
+          conosco?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.concordaManterInformados"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.concordaManterInformados">
+          <ng-container
+            *ngIf="concordaManterInformados.hasError(error.type) && (concordaManterInformados.dirty || concordaManterInformados.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h6 position="floating">
+          Adotante aceitaria receber visitas após a adoção?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.aceitaVisitasPosAdocao"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.aceitaVisitasPosAdocao">
+          <ng-container
+            *ngIf="aceitaVisitasPosAdocao.hasError(error.type) && (aceitaVisitasPosAdocao.dirty || aceitaVisitasPosAdocao.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <h6 position="floating">
+          O adotante já doou ou adotou um outro pet?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.adotouoOuDoouUmPet"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.adotouoOuDoouUmPet">
+          <ng-container
+            *ngIf="adotouoOuDoouUmPet.hasError(error.type) && (adotouoOuDoouUmPet.dirty || adotouoOuDoouUmPet.touched)"
+          >
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <div>
+          <h3>Caso o adotante possua animais</h3>
+          <h6 position="floating">
+            O pet do adotante é castrado?</h6
+          >
           <ion-item>
-            <ion-label position="floating">Link Imagem</ion-label>
             <ion-input
-              formControlName="imagem"
+              [value]="adocao.usuario.isCastrados"
               autocapitalize
               disabled
               inputmode="text"
             ></ion-input>
           </ion-item>
+          <div *ngFor="let error of errorMessages.isCastrados">
+            <ng-container
+              *ngIf="isCastrados.hasError(error.type) && (isCastrados.dirty || isCastrados.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
 
+          <h6 position="floating">
+            Adotante reside em casa ou apartamento?</h6
+          >
           <ion-item>
-            <ion-label position="floating">Nome</ion-label>
             <ion-input
-              formControlName="nome"
+              [value]="adocao.usuario.tipoResidencia"
+              autocapitalize
+              disabled
+              inputmode="text"
+            ></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.tipoResidencia">
+            <ng-container
+              *ngIf="tipoResidencia.hasError(error.type) && (tipoResidencia.dirty || tipoResidencia.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <h6>Adotante possui ou possuiu animais e estimação?</h6>
+          <ion-item>
+            <ion-input style="color: black; font-weight: 50px;"
+              [value]="adocao.usuario.ambientePropicioParaCriacao"
+              disabled
               autocapitalize
               inputmode="text"
             ></ion-input>
           </ion-item>
-
-
-      </form>
-    </div>
-  </ion-content>
-
-
-  <div class="seperator">
-    <hr>
+          <div *ngFor="let error of errorMessages.ambientePropicioParaCriacao">
+            <ng-container
+              *ngIf="ambientePropicioParaCriacao.hasError(error.type) && (ambientePropicioParaCriacao.dirty || ambientePropicioParaCriacao.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+        </div>
+      </ion-list>
+    </form>
   </div>
-
-
-
-
 </ion-content>
-<ion-footer>
-  <ion-row>
-    <ion-col size="6">
-      <ion-button expand="full" color="danger" routerLink="/my-orders" routerDirection="forward" >Excluir</ion-button>
-    </ion-col>
-    <ion-col size="6">
-      <ion-col size="6">
-        <ion-button size="6" expand="full" routerDirection="forward" >Atualizar</ion-button>
-        <ion-button expand="full" routerDirection="forward" >Cadastrar</ion-button>
-      </ion-col>
-    </ion-col>
-  </ion-row>
+
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+  <ion-toolbar color="translucent">
+    <ion-button
+      expand="block"
+      class="main-button"
+      routerLink="/confirm"
+      routerDirection="forward"
+      [disabled]="!registrationForm.valid"
+      (click)="submit()"
+      >Enviar</ion-button
+    >
+  </ion-toolbar>
 </ion-footer>
