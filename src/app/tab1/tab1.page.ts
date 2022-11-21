@@ -1,6 +1,13 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/quotes */
+import { Categoria } from './categoria.model';
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+import { HomeService } from './home.service';
+/* eslint-disable @angular-eslint/use-lifecycle-interface */
+/* eslint-disable @typescript-eslint/naming-convention */
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -8,42 +15,55 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  public categories = [];
+  public featuredProducts = [];
+  public bestSellProducts = [];
 
-  animals = [
+
+  dataDisatnce: any;
+  id: string = "0";
+
+  categoria: Categoria;
+
+  adoptions: any;
+
+  animais = [
     {
-      id: '1',
-      nome: 'Spyke',
-      sexo: 'Macho',
-      descricao: 'lorem imspum',
-      imagem: 'https://www.petz.com.br/blog/wp-content/uploads/2020/01/como-saber-se-o-gato-e-femea-felina-1280x720.jpg'
-    },
-    {
-      id: '2',
-      nome: 'Spyke',
-      sexo: 'Macho',
-      descricao: 'lorem imspum',
-      imagem: 'https://www.petz.com.br/blog/wp-content/uploads/2020/01/como-saber-se-o-gato-e-femea-felina-1280x720.jpg'
-    },
-    {
-      id: '3',
-      nome: 'Spyke',
-      sexo: 'Macho',
-      descricao: 'lorem imspum',
-      imagem: 'https://www.petz.com.br/blog/wp-content/uploads/2020/01/como-saber-se-o-gato-e-femea-felina-1280x720.jpg'
+      id: '',
+      nome: '',
+      sexo: '',
+      idade: '',
+      vacinado: false,
+      porte: '',
+      cor: '',
+      descricao: '',
+      imagem: '',
+      raca: '',
+      status: '',
+      categoria_id: ''
     }
   ];
 
-  slideOpts = {
-    initialSlide: 1,
-    speed: 400,
-    pagination: false,
-    slidesPerView: 3.5,
-    spaceBetween: 0
-  };
+  constructor(
+    private router: Router,
+    private homeService: HomeService,
+    private activatedRoute: ActivatedRoute,
+    private navCtrl: NavController
+  ) { }
 
-  constructor(private router: Router) {}
+  ngOnInit() {
 
-  showPetInfo(index: number){
-    this.router.navigateByUrl('/pet-info/' + this.animals[index].id);
+    this.animais = [];
+
+    this.homeService.getAdoptions().subscribe(adoptions => {
+      console.log(adoptions);
+      this.adoptions = adoptions;
+    });
   }
+
+
+  showAdoption(adocao){
+    this.navCtrl.navigateRoot(`/donation/${adocao.id}`, { animationDirection: 'forward' });
+  }
+
 }

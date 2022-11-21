@@ -1,0 +1,288 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" class="backbtn" routerLink="/tabs/tab3" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+        <span>&nbsp;</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="false" class="product-slider">
+    <ion-slide>
+      <img [src]="animal.imagem"/>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-content class="ion-padding" fullscreen="true">
+    <h1 class="title">Cadastros de animais</h1>
+    <div class="form-container">
+      <form [formGroup]="registrationForm">
+          <ion-item>
+            <ion-label position="floating">Nome</ion-label>
+            <ion-input
+              [(ngModel)]="animal.nome"
+              formControlName = "nome"
+              autocapitalize
+              inputmode="text"
+            ></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.nome">
+            <ng-container
+              *ngIf="nome.hasError(error.type) && (nome.dirty || nome.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <ion-list>
+            <ion-item>
+              <ion-select placeholder="Selecione o sexo" formControlName="sexo">
+                <ion-select-option value="Macho">Macho</ion-select-option>
+                <ion-select-option value="Fêmea">Fêmea</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+
+          <ion-item>
+            <ion-label position="floating">Idade</ion-label>
+            <ion-input
+              [(ngModel)]="animal.idade"
+              formControlName = "idade"
+              autocapitalize
+              inputmode="text"
+            ></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.idade">
+            <ng-container
+              *ngIf="idade.hasError(error.type) && (idade.dirty || idade.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <ion-list>
+            <ion-item>
+              <ion-select placeholder="Selecione o porte" formControlName="porte">
+                <ion-select-option value="Pequeno">Pequeno</ion-select-option>
+                <ion-select-option value="Médio">Médio</ion-select-option>
+                <ion-select-option value="Grande">Grande</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+
+          <ion-item>
+            <ion-label position="floating">Cor</ion-label>
+            <ion-input
+              [(ngModel)]="animal.cor"
+              formControlName = "cor"
+              autocapitalize
+              inputmode="text"
+            ></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.cor">
+            <ng-container
+              *ngIf="cor.hasError(error.type) && (cor.dirty || cor.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+
+          <ion-item>
+            <ion-label position="floating">Desricacao</ion-label>
+            <ion-input
+              [(ngModel)]="animal.descricao"
+              formControlName = "descricao"
+              autocapitalize
+              inputmode="text"
+            ></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.descricao">
+            <ng-container
+              *ngIf="descricao.hasError(error.type) && (descricao.dirty || descricao.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+
+          <ion-item>
+            <ion-label position="floating">Imagem</ion-label>
+            <ion-input
+              [(ngModel)]="animal.imagem"
+              formControlName = "imagem"
+              autocapitalize
+              inputmode="text"
+            ></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.imagem">
+            <ng-container
+              *ngIf="imagem.hasError(error.type) && (imagem.dirty || imagem.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">Raça</ion-label>
+            <ion-input
+              [(ngModel)]="animal.raca"
+              formControlName = "raca"
+              autocapitalize
+              inputmode="text"
+            ></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.raca">
+            <ng-container
+              *ngIf="raca.hasError(error.type) && (raca.dirty || raca.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <h6  style="margin-left: 6%;" position="floating"
+              >Vermifugado?</h6
+            >
+          <ion-segment formControlName="vermifugado">
+            <ion-segment-button value="true">
+              <ion-label>Sim</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="false">
+              <ion-label>Não</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+          <div *ngFor="let error of errorMessages.vermifugado">
+            <ng-container
+              *ngIf="vermifugado.hasError(error.type) && (vermifugado.dirty || vermifugado.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+
+            <h6  style="margin-left: 6%;" position="floating"
+              >Vacinado?</h6
+            >
+          <ion-segment formControlName="vacinado">
+            <ion-segment-button value="true">
+              <ion-label>Sim</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="false">
+              <ion-label>Não</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+          <div *ngFor="let error of errorMessages.vacinado">
+            <ng-container
+              *ngIf="vacinado.hasError(error.type) && (vacinado.dirty || vacinado.touched)"
+            >
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <!-- Endereco -->
+          <ion-item>
+            <ion-label position="floating">CEP</ion-label>
+            <ion-input formControlName="cep" (ionInput)="findCep($event.target.value)" placeholder="26031480"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.cep">
+            <ng-container *ngIf="cep.hasError(error.type) && (cep.dirty || cep.touched)">
+                <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+        <div *ngIf="zipCodePresent">
+          <ion-item>
+            <ion-label position="floating">Rua</ion-label>
+            <ion-input formControlName="rua"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.rua">
+            <ng-container *ngIf="rua.hasError(error.type) && (rua.dirty || rua.touched)">
+                <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">Número</ion-label>
+            <ion-input formControlName="numero"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.numero">
+            <ng-container *ngIf="numero.hasError(error.type) && (numero.dirty || numero.touched)">
+                <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">Complemento</ion-label>
+            <ion-input formControlName="complemento"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.complemento">
+            <ng-container *ngIf="complemento.hasError(error.type) && (complemento.dirty || complemento.touched)">
+                <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">Bairro</ion-label>
+            <ion-input formControlName="bairro"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.bairro">
+            <ng-container *ngIf="bairro.hasError(error.type) && (bairro.dirty || bairro.touched)">
+                <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">Cidade</ion-label>
+            <ion-input formControlName="cidade"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.cidade">
+            <ng-container *ngIf="cidade.hasError(error.type) && (cidade.dirty || cidade.touched)">
+                <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+        </div>
+
+
+          <ion-list>
+            <ion-item>
+              <ion-select placeholder="Selecione uma categoria" formControlName="categoria_id">
+                <ion-select-option [value]="categoria.id" *ngFor="let categoria of categorias">{{categoria.nome}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+      </form>
+    </div>
+  </ion-content>
+
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+
+
+
+</ion-content>
+<ion-footer>
+  <ion-row >
+    <ion-col size="6">
+      <ion-button expand="full" color="danger" routerLink="/my-orders" routerDirection="forward" >Excluir</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button size="6" *ngIf="idAnimal != null" expand="full" routerDirection="forward" (click)="update()">Atualizar</ion-button>
+      <ion-button *ngIf="idAnimal == null" expand="full" routerDirection="forward" (click)="cadastrar()">Cadastrar</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

@@ -12,18 +12,21 @@
   <ion-col>
   <ion-list inset>
   <ion-item>
-  <ion-input placeholder="Usuário" name="username" id="loginField" type="text" required></ion-input>
+  <ion-input placeholder="Usuário" [(ngModel)]="cadastroDados.nome" name="username" id="loginField" type="text" required></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Senha" name="password" id="passwordField" type="password" required></ion-input>
+    <ion-input placeholder="Usuário" [(ngModel)]="cadastroDados.login" name="username" id="loginField" type="text" required></ion-input>
+    </ion-item>
+  <ion-item>
+    <ion-input placeholder="Senha" [(ngModel)]="cadastroDados.senha" name="password" id="passwordField" type="password" required></ion-input>
   </ion-item>
   <span></span>
   <ion-item>
-    <ion-input placeholder="Email" name="email" id="emailField" type="email" required></ion-input>
+    <ion-input placeholder="Email" [(ngModel)]="cadastroDados.email" name="email" id="emailField" type="email" required></ion-input>
   </ion-item>
   <span></span>
   <ion-item>
-    <ion-input placeholder="Telefone" name="telefone" id="telefoneField" type="phone" required></ion-input>
+    <ion-input placeholder="Telefone" [(ngModel)]="cadastroDados.telefone" name="telefone" id="telefoneField" type="phone" required></ion-input>
   </ion-item>
   <span></span>
 </ion-list>
@@ -31,7 +34,7 @@
   </ion-row>
   <ion-row>
   <ion-col>
-  <ion-button class="submit-btn" fulltype="submit">CADASTRAR</ion-button>
+  <ion-button class="submit-btn" fulltype="submit" (click)="cadastrar()">CADASTRAR</ion-button>
   </ion-col>
 </ion-row>
   <ion-row>

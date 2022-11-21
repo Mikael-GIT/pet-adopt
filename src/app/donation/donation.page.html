@@ -1,51 +1,70 @@
-<ion-header [translucent]="true">
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      PetAdopt
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="primary" class="backbtn" routerLink="/tabs/tab2" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+        <span>&nbsp;</span>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
+  <ion-content class="ion-padding" fullscreen="true">
+    <img [src]=""/>
+    <h1 class="title">Pedido de adoção</h1>
+    <div class="form-container">
+      <form>
+          <ion-item>
+            <ion-label position="floating">Link Imagem</ion-label>
+            <ion-input
+              formControlName="imagem"
+              autocapitalize
+              disabled
+              inputmode="text"
+            ></ion-input>
+          </ion-item>
 
-  <ion-content style="align-items: center; text-align: center;">
-    <ion-card>
-      <ion-card-header>
-        <ion-img style="height: 100%;" src="https://www.petz.com.br/blog/wp-content/uploads/2020/01/como-saber-se-o-gato-e-femea-felina-1280x720.jpg"></ion-img>
-        <ion-card-title>Card Title</ion-card-title>
-        <ion-card-subtitle>Ao realizar essa contribuição, saiba que estará contribuindo com o mantimento do #NOME# por #x# tempo.</ion-card-subtitle>
-      </ion-card-header>
-    </ion-card>
+          <ion-item>
+            <ion-label position="floating">Nome</ion-label>
+            <ion-input
+              formControlName="nome"
+              autocapitalize
+              inputmode="text"
+            ></ion-input>
+          </ion-item>
 
-    <h3>Deseja doar qual quantia?</h3>
-    <ion-grid>
-      <ion-row style="text-align: center;">
-        <ion-col size="4" size-sm>
-          <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn3.iconfinder.com/data/icons/volunteering-1/2000/Volunteering_cat-01-01-512.png"></ion-img></ion-button>
-        </ion-col>
-        <ion-col size="4" size-sm>
-          <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn3.iconfinder.com/data/icons/volunteering-1/2000/Volunteering_cat-01-01-512.png" style="height: 80%; width: 100%;"></ion-img></ion-button>
-        </ion-col>
-        <ion-col size="4" size-sm>
-          <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn3.iconfinder.com/data/icons/volunteering-1/2000/Volunteering_cat-01-01-512.png" style="height: 80%; width: 100%;"></ion-img></ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-row style="text-align: center; margin-top: 5%;">
-        <ion-col size="4" size-sm>
-          <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn3.iconfinder.com/data/icons/volunteering-1/2000/Volunteering_cat-01-01-512.png" style="height: 80%; width: 100%;"></ion-img></ion-button>
-        </ion-col>
-        <ion-col size="4" size-sm>
-          <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn3.iconfinder.com/data/icons/volunteering-1/2000/Volunteering_cat-01-01-512.png" style="height: 80%; width: 100%;"></ion-img></ion-button>
-        </ion-col>
-        <ion-col size="4" size-sm>
-          <ion-button color="Light" style="width: 80%; height: 100%;"><ion-img src="https://cdn3.iconfinder.com/data/icons/volunteering-1/2000/Volunteering_cat-01-01-512.png" style="height: 80%; width: 100%;"></ion-img></ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-row style="text-align: center; justify-content: center;">
-        <ion-button color="primary" style="width: 80%; height: 40%; margin-top: 4%; color: black"><h4>Doar outra quantia</h4></ion-button>
-      </ion-row>
-  </ion-grid>
 
+      </form>
+    </div>
   </ion-content>
 
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+
+
+
 </ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full" color="danger" routerLink="/my-orders" routerDirection="forward" >Excluir</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-col size="6">
+        <ion-button size="6" expand="full" routerDirection="forward" >Atualizar</ion-button>
+        <ion-button expand="full" routerDirection="forward" >Cadastrar</ion-button>
+      </ion-col>
+    </ion-col>
+  </ion-row>
+</ion-footer>

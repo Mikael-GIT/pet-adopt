@@ -21,14 +21,34 @@ const routes: Routes = [
   {
     path: 'pet-info/:id',
     loadChildren: () => import('./pet-info/pet-info.module').then( m => m.PetInfoPageModule)
-  },  {
+  },
+  {
     path: 'donation',
     loadChildren: () => import('./donation/donation.module').then( m => m.DonationPageModule)
   },
   {
     path: 'adoption',
     loadChildren: () => import('./adoption/adoption.module').then( m => m.AdoptionPageModule)
+  },
+  {
+    path: 'favorite/:id',
+    loadChildren: () => import('./favorite/favorite.module').then( m => m.FavoritePageModule)
+  },
+  {
+    path: 'favorite',
+    loadChildren: () => import('./favorite/favorite.module').then( m => m.FavoritePageModule)
+  },
+  {
+    path: 'item-details/:id',
+    loadChildren: () => import('./item-details/item-details.module').then( m => m.ItemDetailsPageModule)
+  },
+  {
+    path: 'item-details',
+    loadChildren: () => import('./item-details/item-details.module').then( m => m.ItemDetailsPageModule)
   }
+
+
+
 
 
 
