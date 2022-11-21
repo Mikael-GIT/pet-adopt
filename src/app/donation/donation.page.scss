@@ -161,6 +161,9 @@ ion-footer {
   }
 }
 
+h6 {
+  margin-left: 3%;
+}
 // This will remove footer shadow on android
 .footer-md::before {
   background-image: none !important;

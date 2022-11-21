@@ -1,7 +1,8 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-buttons class="backbtn" routerLink="/my-cart" routerDirection="back">
+      <ion-buttons class="backbtn" routerLink="/tabs/tab1" routerDirection="back">
         <img src="../../assets/back-dark.svg" />
       </ion-buttons>
     </ion-buttons>
@@ -9,11 +10,49 @@
 </ion-header>
 
 <ion-content class="ion-padding" fullscreen="true">
-  <h1 class="title">Dados do pedido de adoção</h1>
+  <h1 class="title">Dados do animal</h1>
   <div class="form-container">
     <form [formGroup]="registrationForm" (ngSubmit)="submit()">
       <ion-list>
-        <h3>Dados Pessoais</h3>
+
+        <ion-item>
+          <ion-img
+            [src]="adocao.animal.imagem"
+            autocapitalize
+            inputmode="text"
+          ></ion-img>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input
+            [value]="adocao.animal.nome"
+            autocapitalize
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Status da adoção</ion-label>
+          <ion-input
+            [value]="adocao.status"
+            autocapitalize
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Data da solicitação</ion-label>
+          <ion-input
+            [value]="adocao.data_solicitacao"
+            autocapitalize
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
+
+
+
+        <h1 class="title">Dados do adotante</h1>
         <ion-item>
           <ion-label position="floating">Idade</ion-label>
           <ion-input
@@ -64,11 +103,14 @@
 
         <h3>Redes Sociais</h3>
 
+        <h6 position="floating">
+          Link do Facebook do adotante</h6
+        >
         <ion-item>
-          <ion-label position="floating">Link do Facebook do adotante</ion-label>
           <ion-input
             [value]="adocao.usuario.linkFacebook"
             autocapitalize
+            disabled
             inputmode="text"
           ></ion-input>
         </ion-item>
@@ -80,11 +122,14 @@
           </ng-container>
         </div>
 
+        <h6 position="floating">
+          Link do Instagram do adotante</h6
+        >
         <ion-item>
-          <ion-label position="floating">Link do Instagram do adotante</ion-label>
           <ion-input
             [value]="adocao.usuario.linkInstagram"
             autocapitalize
+            disabled
             inputmode="text"
           ></ion-input>
         </ion-item>
@@ -96,17 +141,19 @@
           </ng-container>
         </div>
 
-          <h6 position="floating">
-            Adotante já possui ou possuiu animais de estimação</h6
-          >
-        <ion-segment formControlName="possuiOuPossuiuPets">
-          <ion-segment-button value="true">
-            <ion-label>Sim</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="false">
-            <ion-label>Não</ion-label>
-          </ion-segment-button>
-        </ion-segment>
+
+
+        <h6 position="floating">
+          Adotante já possui ou possuiu animais de estimação?</h6
+        >
+        <ion-item>
+          <ion-input
+            [value]="adocao.usuario.possuiOuPossuiuPets"
+            autocapitalize
+            disabled
+            inputmode="text"
+          ></ion-input>
+        </ion-item>
         <div *ngFor="let error of errorMessages.possuiOuPossuiuPets">
           <ng-container
             *ngIf="possuiOuPossuiuPets.hasError(error.type) && (possuiOuPossuiuPets.dirty || possuiOuPossuiuPets.touched)"
@@ -114,6 +161,7 @@
             <small class="error-message">{{error.message}}</small>
           </ng-container>
         </div>
+
 
         <h3>Casa e Família</h3>
 
@@ -352,6 +400,28 @@
       </ion-list>
     </form>
   </div>
+  <ion-card style="text-align: center;">
+    <ion-card-header>
+      <h4 style="color: black;">Agendar entrevista</h4>
+      <ion-button id="open-modal" style="opacity: 90%;">Selecione uma data e hora</ion-button>
+    <ion-modal
+    [initialBreakpoint]="0.5" trigger="open-modal">
+      <ng-template>
+        <ion-content>
+          <ion-datetime showDefaultButtons="true" [(ngModel)]="date" (ngModelChange)="submit()"></ion-datetime>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button
+        expand="block"
+        class="main-button"
+        (click)="submit()"
+        >Agendar</ion-button
+      >
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 <ion-footer translucent="true" class="ion-no-border" mode="md">
@@ -359,11 +429,10 @@
     <ion-button
       expand="block"
       class="main-button"
-      routerLink="/confirm"
-      routerDirection="forward"
-      [disabled]="!registrationForm.valid"
-      (click)="submit()"
-      >Enviar</ion-button
+      [disabled]="adocao.status != 'agendado'"
+      (click)="aprovarPedido()"
+      color="success"
+      >Aprovar pedido de adoção</ion-button
     >
   </ion-toolbar>
 </ion-footer>

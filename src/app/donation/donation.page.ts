@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/naming-convention */
+import { AdoptionService } from './adoption.service';
 /* eslint-disable @typescript-eslint/quotes */
 import { LocalStorageService } from './../services/local-storage.service';
 import { CategoriaService } from './../favorite/categoria.service';
@@ -14,9 +17,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DonationPage implements OnInit {
 
+  adoptionData = {
+    id: '',
+    usuario_id: '',
+    animal_id: '',
+    data_entrevista: ''
+  };
 
   adocao: any;
-
+  date: any;
   segmentValue: string;
 
 
@@ -188,13 +197,22 @@ export class DonationPage implements OnInit {
     ambientePropicioParaCriacao: ['',[Validators.maxLength(50)]],
   });
 
-  constructor(private formBuilder: FormBuilder, private localStorageService: LocalStorageService) {}
+  constructor(private formBuilder: FormBuilder, private localStorageService: LocalStorageService, private adoptionService: AdoptionService) {}
   ngOnInit(): void {
     this.adocao = this.localStorageService.get("adoption");
   }
 
   public submit() {
-    console.log("cheguei aqui");
+    this.adoptionData.data_entrevista = this.date;
+    this.adoptionData.id = this.adocao.id;
+    this.adoptionData.animal_id = this.localStorageService.get("id_animal");
+    this.adoptionData.usuario_id = this.localStorageService.get("user_id");
+    this.adoptionService.agendarEntrevista(this.adoptionData).subscribe(agendamento => console.log(agendamento));
+  }
 
+
+  public aprovarPedido() {
+    this.adoptionData.id = this.adocao.id;
+    this.adoptionService.aprovarPedido(this.adoptionData).subscribe(agendamento => console.log(agendamento));
   }
 }
